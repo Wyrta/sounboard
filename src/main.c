@@ -1,4 +1,4 @@
-#include <C:\Users\Tenegan\Desktop\projet_tut\src\header_sb.h>
+#include <C:\Users\Tenegan\Desktop\Some_Bytes\projet_tut\src\header_sb.h>
 
 //dimention fenetre
 #define WINDOW_WIDTH 800
@@ -24,7 +24,7 @@ int main(int argc, char *argv[]) {
     if (SDL_CreateWindowAndRenderer(WINDOW_WIDTH, WINDOW_HEIGHT, 0, &window, &renderer) != 0 ) SDL_ExitWithError("creation fenetre et rendu");
 
     //pour le titre
-    const char *windowTitle = "Soundboard v1.2.0";
+    const char *windowTitle = "Soundboard v1.7.0";
     SDL_SetWindowTitle(window, windowTitle);
 
     //pour l'icon
@@ -223,20 +223,33 @@ int main(int argc, char *argv[]) {
             if(event.type == SDL_QUIT) program_launched = SDL_FALSE;    //si on clique la croix on quitte
 
             if(event.type == SDL_KEYDOWN) { 
-                if(event.key.keysym.sym == SDLK_F1) {      //pour afficher tout les peripherques audio
-                    char messageBox[] = "";
+                switch (event.key.keysym.sym) {
+                    case SDLK_F1: {      //pour afficher tout les peripherques audio
+                            char messageBox[] = "";
 
-                    int i, count = SDL_GetNumAudioDevices(0);
-                    if(count >= 3) count = 3;
+                            int i, count = SDL_GetNumAudioDevices(0);
+                            if(count >= 3) count = 3;
 
-                    for(i = 0; i < count; ++i) {
-                        strcat(messageBox, SDL_GetAudioDeviceName(i, 0));
-                        strcat(messageBox, "\n");
-                    }
-                    SDL_ShowSimpleMessageBox(SDL_MESSAGEBOX_INFORMATION, "Peripherique", messageBox, NULL);
-                }
-                if(event.key.keysym.sym == SDLK_F2) {
-                    printf("F2");
+                            for(i = 0; i < count; ++i) {
+                                strcat(messageBox, SDL_GetAudioDeviceName(i, 0));
+                                strcat(messageBox, "\n");
+                            }
+                            SDL_ShowSimpleMessageBox(SDL_MESSAGEBOX_INFORMATION, "Peripherique", messageBox, NULL);
+                        } break;
+                    case SDLK_F5: {
+                            char* son = "../src/sound/sonF5.wav";
+                            playSound(son, audioID, renderer);
+                    } break;
+                    case SDLK_F6: playSound("../src/sound/sonF6.wav", audioID, renderer); break;
+                    case SDLK_F7: playSound("../src/sound/sonF7.wav", audioID, renderer); break;
+                    case SDLK_F8: playSound("../src/sound/sonF8.wav", audioID, renderer); break;
+                    case SDLK_F9: playSound("../src/sound/sonF9.wav", audioID, renderer); break;
+                    case SDLK_F10: playSound("../src/sound/sonF10.wav", audioID, renderer); break;
+                    case SDLK_F11: playSound("../src/sound/sonF11.wav", audioID, renderer); break;
+                    case SDLK_F12: playSound("../src/sound/sonF12.wav", audioID, renderer); break;
+
+                default:
+                    break;
                 }
             }
 
