@@ -1,4 +1,4 @@
-#include <C:\Users\****\Desktop\projet_tut\include/SDL/SDL.h>
+#include <C:\Users\Tenegan\Desktop\Some_Bytes\projet_tut\include/SDL/SDL.h>
 
 //dimention fenetre
 #define WINDOW_WIDTH 800

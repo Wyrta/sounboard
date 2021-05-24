@@ -1,4 +1,11 @@
-#include <C:\Users\Tenegan\Desktop\Some_Bytes\projet_tut\src\header_sb.h>
+/**
+ * Projet Soundboard
+ * Fait par Tenegan BILLOT
+ * Dans le cadre du projet tut en 1ere année de GEII
+ * 
+*/
+
+#include "header_sb.h"
 
 //dimention fenetre
 #define WINDOW_WIDTH 800
@@ -12,12 +19,12 @@ gcc src/main.c -o bin/prog.exe -mwindow -I include -L lib -lmingw32 -lSDL2main -
 
 
 int main(int argc, char *argv[]) {
-    //initialisation de la SDL > si erreur > on retourne l'erreur et on quitte
+    //initialisation de la SDL audio+video > si erreur > on retourne l'erreur et on quitte
     if(SDL_Init(SDL_INIT_VIDEO | SDL_INIT_AUDIO ) != 0) 
         SDL_ExitWithError("initialisation SDL");
 
     SDL_Window *window = NULL;  //declaration variable pour la fenetre
-    SDL_Renderer *renderer = NULL;
+    SDL_Renderer *renderer = NULL;  //decaration du rendu (image qui sera affiché a chaque fois que je le demande)
 
     
     //Creation fenetre + rendu
@@ -69,7 +76,7 @@ int main(int argc, char *argv[]) {
 
     int frameTicks = SDL_GetTicks();                    //init fps
     int tempsFrame = SDL_GetTicks() - frameTicks;  
-//----------------------------------------------------------------
+//------------------------------------------------------------------------------------------------------
 
     while(program_launched) {
         SDL_Event event;
@@ -258,7 +265,7 @@ int main(int argc, char *argv[]) {
         }   //fin while event
     }   //fin while programme lancé
 
-    //------------------------------------------------------------------------------------------------------
+//------------------------------------------------------------------------------------------------------
 
     //ci apres destruction de tt les elements
     SDL_DestroyRenderer(renderer);
